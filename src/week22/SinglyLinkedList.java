@@ -7,34 +7,43 @@ import java.util.List;
 public class SinglyLinkedList {
 
     Node head;
+    Node tail;
     Node prev;
-    public List<Integer> removeDuplicate(List<Integer> list) {
-        head = prev = new Node(list.get(0));
-        Node current = head;
 
-        for (int i = 1; i < list.size(); i++) {
-            current.next = new Node(list.get(i));
-            prev = current;
+    public Node add(int value){
+        Node node = new Node(value);
+        if(head == null){
+            head = node;
+            return head;
+        }
+        Node current = head;
+        while(current.next != null){
             current = current.next;
+        }
+        current.next = node;
+        return head;
+    }
+
+    public void printList(){
+        Node current = head;
+        while(current != null){
+            System.out.print(current.value + " => ");
+            current = current.next;
+        }
+        System.out.println();
+    }
+
+    public void removeDuplicate(Node head) {
+        Node current = head.next;
+        prev = head;
+        while(current != null){
             if(current.value == prev.value){
-                list.set(i,-1);
-                continue;
-            }else {
+                current = current.next;
                 prev.next = current;
+            }else {
+                prev = current;
+                current = current.next;
             }
         }
-        list.removeIf(i -> i == -1);
-        return list;
     }
-
-
-    public static void main(String[] args) {
-
-        SinglyLinkedList linkedList = new SinglyLinkedList();
-        List<Integer> list = new LinkedList<>(Arrays.asList(1, 1, 3, 4, 4, 4, 5, 6, 6));
-        System.out.println(list);
-        System.out.println(linkedList.removeDuplicate(list));
-    }
-
-
 }
