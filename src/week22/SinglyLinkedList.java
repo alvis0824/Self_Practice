@@ -1,13 +1,8 @@
 package week22;
 
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.List;
-
 public class SinglyLinkedList {
 
     Node head;
-    Node tail;
     Node prev;
 
     public Node add(int value){
@@ -30,7 +25,7 @@ public class SinglyLinkedList {
             System.out.print(current.value + " => ");
             current = current.next;
         }
-        System.out.println();
+        System.out.println("null");
     }
 
     public void removeDuplicate(Node head) {
